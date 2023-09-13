@@ -1,22 +1,20 @@
 import pandas as pd
 
-def extract_station_id():
+def extract_station_id(city):
     # Load the CSV file into a pandas DataFrame
-    df = pd.read_csv('data/station_inventory_en.csv')
+    df = pd.read_csv('/media/tak/DATA/work/wave/data/station_inventory.csv')
+    
+    
+    # Filter the DataFrame to get a record for the input city in Ontario
+    city_station = df[df['Name'].str.upper() == city.upper()]
+    
+    # Extract and return the station ID
+    if not city_station.empty:
+        #print(city_station['Station ID'].values[0])
+        return city_station['Station ID'].values[0]
 
-    
-    # Filter the DataFrame to get a record for a weather station in Toronto, Ontario
-    # (You might need to adjust the filtering conditions based on the structure of the CSV file)
-    toronto_station = df[(df['Name'] == 'TORONTO')]
-    
-    # Extract the station ID
-    if not toronto_station.empty:
-        station_id = toronto_station['Station ID'].values[0]
-        print(f"The station ID for Toronto, Ontario is: {station_id}")
-        return station_id
     else:
-        print("No station found with the exact name 'TORONTO'")
+        print(f"No station found for the city: {city}")
         return None
-
-# Uncomment the following line to run the function
-extract_station_id()
+    
+#extract_station_id("Toronto")
