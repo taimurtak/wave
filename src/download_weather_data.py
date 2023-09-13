@@ -20,6 +20,5 @@ def download_weather_data(station_id):
             # Execute the command
             os.system(command)
 
-# Uncomment the following line to run the function with the station ID as the argument
+# Uncomment the following line to run the function with the station ID as the argum#ent
 download_weather_data(5651)
-# nos it should work
